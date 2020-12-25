@@ -38,6 +38,8 @@ def main ():
 	plt.xlabel('nº of Forest Fires') #sets x-axis label
 	plt.ylabel('Year') #sets y-axis label
 
+	for i, num in enumerate(forest_fire_per_year['number']):
+		plt.text(i, num + 500000, str(int(num // 1000)) + 'e3' , ha = 'center', fontsize = 5)
 	plt.grid(True, 'both', zorder = 0, alpha = 0.5) #grid in both x and y axis, it goes beneath the graph which is why the zorder is 0, alpha is trasnparency level
 
 	plt.show()
