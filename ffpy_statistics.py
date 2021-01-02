@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 from typing import List
 import math 
 
-def meanFFPY(forest_fire_per_year) -> float:
+def meanFFPY(forest_fire_per_year, column:str) -> float:
 	#We add all the number of fires together and divide by the total number of years to obtain an average per year
 	totalFires = forest_fire_per_year['number'].sum()
-	totalYears = len(forest_fire_per_year['year'])
+	totalYears = len(forest_fire_per_year[column])
 	return totalFires / totalYears
 
 def medianFFPY(forest_fire_per_year) -> int or float:
@@ -96,7 +96,7 @@ def yearOveryearFFPY(forest_fire_per_year, listPercentages = [], percentages = 0
 	#First we calculate the percentage change year over year
 	for i in range(len(forest_fire_per_year['number'])):
 		if i < len(forest_fire_per_year['number']) - 1:
-			listPercentages += [(forest_fire_per_year['number'][i + 1] - forest_fire_per_year['number'][i]) * 100 / forest_fire_per_year['number'][i]]
+			listPercentages += [(forest_fire_per_year.iloc[i + 1]['number'] - forest_fire_per_year.iloc[i]['number']) * 100 / forest_fire_per_year.iloc[i]['number']]
 	#Now we average the percentages over the years
 	for percentage in listPercentages:
 		percentages += percentage
@@ -113,12 +113,13 @@ def main ():
 	
 	#Statistics:
 	#mean, median(good to use in case of outliers), range(interquartile range), standard deviation(square root of variance), variance, skew, year over year%
-	mean = meanFFPY(forest_fire_per_year)
+	mean = meanFFPY(forest_fire_per_year, 'year')
 	median = medianFFPY(forest_fire_per_year)
 	Range, maxValue, minValue = rangeFFPY(forest_fire_per_year)
 	IQR, Q1, Q3 = IQrangeFFPY(forest_fire_per_year, median)
 	variance, standardDeviation = varianceFFPY(forest_fire_per_year, mean)
 	skew = skewFFPY(forest_fire_per_year, mean, median, standardDeviation) #If it is negative value means its left-skewed, bigger values to the right
 	yearOveryear, listPercentages = yearOveryearFFPY(forest_fire_per_year)
+	#Comment on outliers how have very high percentages , differ vastly from the rest ,see change in average percentage without them
 
 if __name__ == '__main__': main()

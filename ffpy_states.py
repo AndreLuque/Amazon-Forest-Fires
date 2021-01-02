@@ -6,9 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List
 
-def main ():
-	amazonData = pd.read_csv('amazon.csv')
-	#Total Forest fires per state
+def main ():	#Total Forest fires per state
 	amazonData = pd.read_csv('amazon.csv')
 	amazonData['number'] = amazonData['number'] * 1000
 	df = amazonData.groupby('state')['number'].sum()
