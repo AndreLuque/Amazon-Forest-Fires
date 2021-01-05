@@ -27,5 +27,6 @@ def main ():
 	skew = skewFFPY(forest_fires_per_month, mean, median, standardDeviation) #If it is negative value means its left-skewed, bigger values to the right
 	monthOverMonth, listPercentages = yearOveryearFFPY(forest_fires_per_month)
 	#Comment on outliers how have very high percentages , differ vastly from the rest ,see change in average percentage without them
+	#Show the amount we will have in 5 years or 10 years at the pace we are at and then in normal conditions(no catastrophes)
 
 if __name__ == '__main__': main()
