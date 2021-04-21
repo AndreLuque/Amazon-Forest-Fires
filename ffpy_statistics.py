@@ -102,7 +102,7 @@ def yearOveryearFFPY(forest_fire_per_year, listPercentages = [], percentages = 0
 		percentages += percentage
 	return percentages / len(listPercentages), listPercentages		
 
-def main ():
+def ffpy_statistics():
 	amazonData = pd.read_csv('amazon.csv')
 	#Creating a sub dataframe where we can show the total amount of forest fires per year
 	forest_fire_per_year = amazonData.groupby('year')['number'].sum()
@@ -122,4 +122,4 @@ def main ():
 	yearOveryear, listPercentages = yearOveryearFFPY(forest_fire_per_year)
 	#Comment on outliers how have very high percentages , differ vastly from the rest ,see change in average percentage without them
 
-if __name__ == '__main__': main()
+	return {int(mean): 'mean', median: 'median', Range: 'Range', maxValue: 'Maximum Value', minValue: 'Minimum Value', IQR: 'Interquartile Range', Q1: 'Quartile 1', Q3: 'Quatile 3', variance: 'Variance', int(standardDeviation): 'Standard Deviation', skew: 'Skew', (str(yearOveryear) + '%'): 'Average yearOveryear Growth'}

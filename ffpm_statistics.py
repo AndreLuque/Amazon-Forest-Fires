@@ -8,7 +8,7 @@ from typing import List
 import math
 from ffpy_statistics import *	
 
-def main ():
+def ffpm_statistics():
 	amazonData = pd.read_csv('amazon.csv')
 	#Creating a sub dataframe where we can show the total amount of forest fires per month
 	forest_fires_per_month = amazonData.groupby('month')['number'].sum()
@@ -29,4 +29,4 @@ def main ():
 	#Comment on outliers how have very high percentages , differ vastly from the rest ,see change in average percentage without them
 	#Show the amount we will have in 5 years or 10 years at the pace we are at and then in normal conditions(no catastrophes)
 
-if __name__ == '__main__': main()
+	return {int(mean): 'mean', median: 'median', Range: 'Range', maxValue: 'Maximum Value', minValue: 'Minimum Value', IQR: 'Interquartile Range', Q1: 'Quartile 1', Q3: 'Quatile 3', variance: 'Variance', int(standardDeviation): 'Standard Deviation', skew: 'Skew', (str(monthOverMonth) + '%'): 'Average monthOverMonth Growth'}

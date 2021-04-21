@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List
 
-def main ():
+def forest_fires_per_year():
 	amazonData = pd.read_csv('amazon.csv')
 	#Creating a sub dataframe where we can show the total amount of forest fires per year
 	forest_fire_per_year = amazonData.groupby('year')['number'].sum()
@@ -31,6 +31,6 @@ def main ():
 		plt.text(i, num + 500000, str(int(num // 1000)) + 'e3' , ha = 'center', fontsize = 5)
 	plt.grid(True, 'both', zorder = 0, alpha = 0.5) #grid in both x and y axis, it goes beneath the graph which is why the zorder is 0, alpha is trasnparency level
 
-	plt.show()
+	
 
-if __name__ == '__main__': main()
+forest_fires_per_year()	

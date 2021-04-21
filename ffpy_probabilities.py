@@ -9,7 +9,7 @@ from ffpy_statistics import *
 import numpy as np
 import scipy.stats
 
-def main ():
+def ffpy_probabilities():
 	amazonData = pd.read_csv('amazon.csv')
 	#Creating a sub dataframe where we can show the total amount of forest fires per year
 	forest_fire_per_year = amazonData.groupby('year')['number'].sum()
@@ -37,8 +37,3 @@ def main ():
 	plt.xlabel('nº of Forest Fires') #sets y-axis label
 
 	#Add line graph following normal distribution
-	
-
-	plt.show()
-
-if __name__ == '__main__': main()

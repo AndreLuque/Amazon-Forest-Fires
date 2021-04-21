@@ -6,7 +6,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List
 
-def main ():	#Total Forest fires per state
+def ffpy_states():	
+	#Total Forest fires per state
 	amazonData = pd.read_csv('amazon.csv')
 	amazonData['number'] = amazonData['number'] * 1000
 	df = amazonData.groupby('state')['number'].sum()
@@ -33,9 +34,3 @@ def main ():	#Total Forest fires per state
 	plt.xlabel('nº of Forest Fires') #sets x-axis label
 	plt.ylabel('Year') #sets y-axis label	
 	plt.legend()
-
-	plt.show()
-
-
-
-if __name__ == '__main__': main()
